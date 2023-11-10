@@ -22,7 +22,7 @@ export function HomeHeader() {
             />
             <VStack flex={1}>
                 <Text color="gray.100" fontSize="md">
-                    Olá,
+                    Olá, Douglas Welber
                 </Text>
 
                 <Heading color="gray.100" fontSize="md" fontFamily="heading">
