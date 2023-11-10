@@ -68,7 +68,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 ### Encontrando todos usuários
 
-`GET` /sup/api/usuario
+`GET` /sup/api/usuarios
 
 **Exemplo corpo da requisição**
 
