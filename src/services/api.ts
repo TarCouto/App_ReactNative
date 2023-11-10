@@ -5,7 +5,7 @@ import { AppError } from "@utils/AppError";
 
 //Endreco de IP da Maquina
 const api = axios.create({
-    baseURL: 'exp://192.168.1.232:8081'
+    baseURL: 'https://sup-rm88383.azurewebsites.net/api/'
 });
 
 api.interceptors.response.use((response) => response, (error) => {

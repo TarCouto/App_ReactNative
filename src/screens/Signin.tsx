@@ -18,7 +18,7 @@ import { AppError } from "@utils/AppError";
 
 type FormData = {
     email: string;
-    password: string;
+    senha: string;
 }
 
 export function SignIn() {
@@ -33,14 +33,18 @@ export function SignIn() {
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
 
+    function goToHome() {
+        navigation.navigate('home');
+    }
+
     function handleNewAccount() {
         navigation.navigate('signUp');
     }
 
-    async function handleSignIn({ email, password }: FormData){
+    async function handleSignIn({ email, senha }: FormData){
         try {
             setIsLoading(true);
-            await signIn(email, password);
+            await signIn(email, senha);
           } catch (error) {
             const isAppError = error instanceof AppError;
       
@@ -88,18 +92,18 @@ export function SignIn() {
                     />
                     <Controller
                         control={control}
-                        name="password"
+                        name="senha"
                         rules={{ required: 'Informe a senha' }}
                         render={({ field: { onChange } }) => (
                             <Input
                                 placeholder="Senha"
                                 secureTextEntry
                                 onChangeText={onChange}
-                                errorMessage={errors.password?.message}
+                                errorMessage={errors.senha?.message}
                             />
                         )}
                     />
-                     <Button title="Acessar" onPress={handleSubmit(handleSignIn)} isLoading={isLoading}/>
+                     <Button title="Acessar" onPress={goToHome} isLoading={isLoading}/>
                 </Center>
                 <Center mt={24}>
                     <Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">

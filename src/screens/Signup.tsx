@@ -1,78 +1,106 @@
-import * as yup from 'yup';
-import { useState } from 'react';
+import * as yup from "yup";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { VStack, Image, Text, Center, Heading, ScrollView, useToast } from "native-base";
-import { useForm, Controller } from 'react-hook-form';
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import {
+  VStack,
+  Image,
+  Text,
+  Center,
+  Heading,
+  ScrollView,
+  useToast,
+} from "native-base";
+import { useForm, Controller } from "react-hook-form";
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "@services/api";
 
-import LogoSvg from '@assets/SUP!.svg';
-import BackgroundImg from '@assets/BAckGrounGalax.png';
+import LogoSvg from "@assets/SUP!.svg";
+import BackgroundImg from "@assets/BAckGrounGalax.png";
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-import { AppError } from '@utils/AppError';
-import { useAuth } from '@hooks/useAuth';
-import React from 'react';
-
-
+import { AppError } from "@utils/AppError";
+import { useAuth } from "@hooks/useAuth";
+import React from "react";
 
 type FormDataProps = {
-  name: string;
+  nome: string;
   email: string;
-  password: string;
-  password_confirm: string;
-}
+  senha: string;
+  senha_confirm: string;
+};
 
 const signUpSchema = yup.object({
-  name: yup.string().required('Informe o nome'),
-  email: yup.string().required('Informe o e-mail').email('E-mail inválido'),
-  password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
-  password_confirm: yup.string()
-    .oneOf([yup.ref('password')], 'As senhas não coincidem')
-    .required('Confirme sua senha.'),
+  nome: yup.string().required("Informe o nome"),
+  email: yup.string().required("Informe o e-mail").email("E-mail inválido"),
+  senha: yup
+    .string()
+    .required("Informe a senha")
+    .min(6, "A senha deve ter pelo menos 6 dígitos."),
+  senha_confirm: yup
+    .string()
+    .oneOf([yup.ref("senha")], "As senhas não coincidem")
+    .required("Confirme sua senha."),
 });
 
 export function SignUp() {
-
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
 
   const { signIn } = useAuth();
 
-  const { control, handleSubmit, formState: { errors }, getValues } = useForm<FormDataProps>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<FormDataProps>({
     resolver: yupResolver(signUpSchema),
   });
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
   function handleGoBack() {
     navigation.goBack();
   }
 
-  async function handleSignUp({ name, email, password, password_confirm }: FormDataProps) {
-    try {
-      setIsLoading(true)
+  function goToHome() {
+    navigation.navigate("home");
+  }
 
-      await api.post('/users', { name, email, password });
-      await signIn(email, password)
+  async function handleSignUp({
+    nome,
+    email,
+    senha,
+    senha_confirm,
+  }: FormDataProps) {
+    try {
+      setIsLoading(true);
+
+      await api.post("/users", { nome, email, senha });
     } catch (error) {
       setIsLoading(false);
       const isAppError = error instanceof AppError;
 
-      const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
+      const title = isAppError
+        ? error.message
+        : "Não foi possível criar a conta. Tente novamente mais tarde";
 
       toast.show({
         title,
-        placement: 'top',
-        bgColor: 'red.500'
-      })
+        placement: "top",
+        bgColor: "red.500",
+      });
     }
   }
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+    >
       <VStack flex={1} px={10} pb={16}>
         <Image
           source={BackgroundImg}
@@ -93,13 +121,13 @@ export function SignUp() {
 
           <Controller
             control={control}
-            name="name"
+            name="nome"
             render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Nome"
                 onChangeText={onChange}
                 value={value}
-                errorMessage={errors.name?.message}
+                errorMessage={errors.nome?.message}
               />
             )}
           />
@@ -119,9 +147,9 @@ export function SignUp() {
           />
           <Controller
             control={control}
-            name="password"
+            name="senha"
             rules={{
-              required: 'Informe sua senha'
+              required: "Informe sua senha",
             }}
             render={({ field: { onChange, value } }) => (
               <Input
@@ -129,20 +157,20 @@ export function SignUp() {
                 secureTextEntry
                 onChangeText={onChange}
                 value={value}
-                errorMessage={errors.password?.message}
+                errorMessage={errors.senha?.message}
               />
             )}
           />
           <Controller
             control={control}
-            name="password_confirm"
+            name="senha_confirm"
             render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Confirmar a Senha"
                 secureTextEntry
                 onChangeText={onChange}
                 value={value}
-                errorMessage={errors.password_confirm?.message}
+                errorMessage={errors.senha_confirm?.message}
                 onSubmitEditing={handleSubmit(handleSignUp)}
                 returnKeyType="send"
               />
@@ -151,7 +179,7 @@ export function SignUp() {
 
           <Button
             title="Criar e acessar"
-            onPress={handleSubmit(handleSignUp)}
+            onPress={goToHome}
             isLoading={isLoading}
           />
         </Center>
