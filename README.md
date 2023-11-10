@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 # Sup
 
 ## Endpoints
+=======
+## Vídeo de apresentação
+(Link do Vídeo Aqui)
+
+## Integrantes
+rm94269 | Douglas Welber - 2TDSS <br/>
+rm94717 | Tarcisio Ferreira Couto - 2TDST<br/>
+rm88383 | Felipe Jardim - 2TDST<br/>
+rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
+
+# Sup Endpoints
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 - Usuário
   - [Registrar](#registrar-novo-usuario)
@@ -17,7 +30,11 @@
 
 # Registrando um novo usuário
 
+<<<<<<< HEAD
 `POST` - /sup/api/usuario/registrar
+=======
+`POST` - /sup/api/usuarios/registrar
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Campos da requisição**
 
@@ -48,7 +65,11 @@
 
 ### Apagando usuário
 
+<<<<<<< HEAD
 `DELETE` /sup/api/usuario/{id}
+=======
+`DELETE` /sup/api/usuarios/{id}
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Respostas**
 
@@ -61,7 +82,11 @@
 
 ### Encontrando todos usuários
 
+<<<<<<< HEAD
 `GET` /sup/api/usuario
+=======
+`GET` /sup/api/usuarios
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Exemplo corpo da requisição**
 
@@ -92,7 +117,11 @@
 
 ### Atualizando usuário
 
+<<<<<<< HEAD
 `PUT` - /sup/api/usuario/{id}
+=======
+`PUT` - /sup/api/usuarios/{id}
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Exemplo corpo da requisição**
 
@@ -113,7 +142,11 @@
 
 ### Detalhes do usuário
 
+<<<<<<< HEAD
 `GET` - /sup/api/usuario/{id}
+=======
+`GET` - /sup/api/usuarios/{id}
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Exemplo corpo da requisição**
 
@@ -139,7 +172,11 @@
 
 # Registrando nova empresa com ID do usuário
 
+<<<<<<< HEAD
 `POST` - /sup/api/addCompany/1
+=======
+`POST` - /sup/api/usuarios/addCompany/1
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
 
 **Campos da requisição**
 
@@ -256,4 +293,8 @@
 | código | descrição                                   |
 | ------ | ------------------------------------------- |
 | 201    | Detalhes da empresa resgatados com sucesso. |
+<<<<<<< HEAD
 | 401    | Campos inválidos.                           |
+=======
+| 401    | Campos inválidos.                           |
+>>>>>>> 8d95ed9520b8e20ad467da8129381f6e2984eb07
