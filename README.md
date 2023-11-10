@@ -24,7 +24,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 # Registrando um novo usuário
 
-`POST` - /sup/api/usuario/registrar
+`POST` - /sup/api/usuarios/registrar
 
 **Campos da requisição**
 
@@ -55,7 +55,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 ### Apagando usuário
 
-`DELETE` /sup/api/usuario/{id}
+`DELETE` /sup/api/usuarios/{id}
 
 **Respostas**
 
@@ -99,7 +99,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 ### Atualizando usuário
 
-`PUT` - /sup/api/usuario/{id}
+`PUT` - /sup/api/usuarios/{id}
 
 **Exemplo corpo da requisição**
 
@@ -120,7 +120,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 ### Detalhes do usuário
 
-`GET` - /sup/api/usuario/{id}
+`GET` - /sup/api/usuarios/{id}
 
 **Exemplo corpo da requisição**
 
@@ -146,7 +146,7 @@ rm94265 | Daniel Ferreira dos Santos - 2TDST <br/>
 
 # Registrando nova empresa com ID do usuário
 
-`POST` - /sup/api/addCompany/1
+`POST` - /sup/api/usuarios/addCompany/1
 
 **Campos da requisição**
 
